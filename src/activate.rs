@@ -2,6 +2,7 @@ use gtk::prelude::*;
 use crate::generate_password::generate_password;
 
 pub(crate) fn on_activate(application: &gtk::Application) {
+
     let window = gtk::ApplicationWindow::new(application);
 
     //(ширина x высота)
@@ -18,8 +19,6 @@ pub(crate) fn on_activate(application: &gtk::Application) {
     let lowercase_checkbox = gtk::CheckButton::with_label("Маленькие буквы");
     let symbols_checkbox = gtk::CheckButton::with_label("Символы");
     let numbers_checkbox = gtk::CheckButton::with_label("Цифры");
-
-    // Минимальная, максимальная и шаг длины пароля
 
     //Поле вывода для отображения сгенерированного пароля
     let password_entry = gtk::Entry::new();
