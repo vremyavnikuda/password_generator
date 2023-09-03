@@ -1,14 +1,12 @@
+use gtk::gdk::Clipboard;
 use gtk::prelude::*;
 use crate::generate_password::generate_password;
 
 pub(crate) fn on_activate(application: &gtk::Application) {
 
     let window = gtk::ApplicationWindow::new(application);
-
-    //(ширина x высота)
     window.set_default_size(400, 300);
 
-    //вертикальный контейнер для элементов
     let vbox = gtk::Box::new(gtk::Orientation::Vertical, 0);
     
     let length_spin = gtk::SpinButton::with_range(1.0, 100.0, 1.0);
@@ -24,6 +22,7 @@ pub(crate) fn on_activate(application: &gtk::Application) {
     let password_entry = gtk::Entry::new();
 
     // Запретит редактирование поля вывода
+    let password_entry = gtk::Entry::new();
     password_entry.set_editable(false);
 
     //"Generator"
@@ -38,6 +37,24 @@ pub(crate) fn on_activate(application: &gtk::Application) {
     let symbols_checkbox_clone = symbols_checkbox.clone();
     let numbers_checkbox_clone = numbers_checkbox.clone();
     let length_spin_clone = length_spin.clone();
+
+    password_entry.connect_activate(|entry| {
+        // Получаем текст из поля вывода
+        let password = entry.text().to_string();
+
+        // Получаем буфер обмена
+        let clipboard = Clipboard::get(gdk::SELECTION_CLIPBOARD);
+
+        // Копируем текст в буфер обмена
+        clipboard.set_text(&password);
+
+        // Подтверждаем успешное копирование, например, через вывод сообщения
+        let dialog = gtk::MessageDialog::new(None::<&gtk::ApplicationWindow>,
+            gtk::DialogFlags::DESTROY_WITH_PARENT,
+            gtk::MessageType::Info,
+            gtk::ButtonsType::Ok,
+            "Пароль скопирован в буфер обмена.");
+    });
 
     generate_button.connect_clicked(move |_| {
         // Логика генерации пароля на основе выбранных параметров
@@ -62,10 +79,8 @@ pub(crate) fn on_activate(application: &gtk::Application) {
     vbox.append(&generate_button);
     vbox.append(&password_entry);
 
-    //`vbox` как дочерний элемент окна
     window.set_child(Some(&vbox));
 
     window.present();
+
 }
-
-
