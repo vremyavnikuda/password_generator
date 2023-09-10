@@ -1,8 +1,10 @@
+use gdk::Display;
 use gtk::gdk::Clipboard;
 use gtk::prelude::*;
 use crate::generate_password::generate_password;
 
-pub(crate) fn on_activate(application: &gtk::Application) {
+
+pub fn on_activate(application: &gtk::Application) {
 
     let window = gtk::ApplicationWindow::new(application);
     window.set_default_size(400, 300);
@@ -41,12 +43,6 @@ pub(crate) fn on_activate(application: &gtk::Application) {
     password_entry.connect_activate(|entry| {
         // Получаем текст из поля вывода
         let password = entry.text().to_string();
-
-        // Получаем буфер обмена
-        let clipboard = Clipboard::get(gdk::SELECTION_CLIPBOARD);
-
-        // Копируем текст в буфер обмена
-        clipboard.set_text(&password);
 
         // Подтверждаем успешное копирование, например, через вывод сообщения
         let dialog = gtk::MessageDialog::new(None::<&gtk::ApplicationWindow>,

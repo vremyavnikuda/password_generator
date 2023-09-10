@@ -7,10 +7,9 @@ edition = "2021"
 
 [dependencies]
 cairo = "0.0.4"
-gtk = { git = "https://github.com/gtk-rs/gtk4-rs.git", package = "gtk4" }
 pango = "0.18.0"
 rand = "0.8.5"
-gio = { git = "https://github.com/gtk-rs/gtk-rs-core.git", package = "gio" }
-gdk = { git = "https://github.com/gtk-rs/gtk4-rs.git", package = "gdk" }
-
-
+gtk = { git = "https://github.com/gtk-rs/gtk4-rs.git", package = "gtk4" }
+gdk = { git = "https://github.com/gtk-rs/gtk4-rs.git", package = "gdk4" }
+gio = "0.18.1"
+glib = "0.18.1"

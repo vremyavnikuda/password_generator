@@ -1,5 +1,5 @@
-mod activate;
 mod generate_password;
+mod activate;
 
 use gtk::prelude::*;
 use crate::activate::on_activate;
