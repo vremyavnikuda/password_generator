@@ -5,12 +5,11 @@ use crate::generate_password::generate_password;
 
 
 pub fn on_activate(application: &gtk::Application) {
-
     let window = gtk::ApplicationWindow::new(application);
     window.set_default_size(400, 300);
 
     let vbox = gtk::Box::new(gtk::Orientation::Vertical, 0);
-    
+
     let length_spin = gtk::SpinButton::with_range(1.0, 100.0, 1.0);
     length_spin.set_value(12.0);
 
@@ -46,10 +45,10 @@ pub fn on_activate(application: &gtk::Application) {
 
         // Подтверждаем успешное копирование, например, через вывод сообщения
         let dialog = gtk::MessageDialog::new(None::<&gtk::ApplicationWindow>,
-            gtk::DialogFlags::DESTROY_WITH_PARENT,
-            gtk::MessageType::Info,
-            gtk::ButtonsType::Ok,
-            "Пароль скопирован в буфер обмена.");
+                                             gtk::DialogFlags::DESTROY_WITH_PARENT,
+                                             gtk::MessageType::Info,
+                                             gtk::ButtonsType::Ok,
+                                             "Пароль скопирован в буфер обмена.");
     });
 
     generate_button.connect_clicked(move |_| {
@@ -78,5 +77,4 @@ pub fn on_activate(application: &gtk::Application) {
     window.set_child(Some(&vbox));
 
     window.present();
-
 }

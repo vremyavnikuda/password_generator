@@ -1,7 +1,6 @@
 use rand::Rng;
 
 pub fn generate_password(use_uppercase: bool, use_lowercase: bool, use_symbols: bool, use_numbers: bool, length: i32) -> String {
-
     let uppercase_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     let lowercase_chars = "abcdefghijklmnopqrstuvwxyz";
     let symbol_chars = "!@#$%^&*()_+-=[]{}|;:,.<>?";

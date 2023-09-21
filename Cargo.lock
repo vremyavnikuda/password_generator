@@ -675,7 +675,7 @@ version = "0.1.0"
 dependencies = [
  "cairo",
  "gdk4",
- "gio 0.18.1",
+ "gio 0.19.0",
  "glib 0.18.1",
  "gtk4",
  "pango 0.18.0",
